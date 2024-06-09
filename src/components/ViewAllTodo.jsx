@@ -3,9 +3,10 @@ import NavBar from './NavBar'
 import axios from 'axios'
 
 const ViewAllTodo = () => {
-    const [data, changeData] = useState([])
+    const [data, changeData] = useState({ "todos": [] })
     const fetchData = () => {
-        axios.get("https://jsonplaceholder.typicode.com/todos").then(
+        console.log("hello")
+        axios.get("https://dummyjson.com/todos").then(
             (Response) => { changeData(Response.data) }
         ).catch().finally()
     }
@@ -23,17 +24,17 @@ const ViewAllTodo = () => {
                                         <tr>
                                             <th scope="col">User ID</th>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Completed</th>
+                                            <th scope="col">Todo</th>
+                                            <th scope="col">completed</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {data.map(
+                                        {data.todos.map(
                                             (value, index) => {
                                                 return <tr>
                                                     <td scope="row">{value.userId}</td>
                                                     <td>{value.id}</td>
-                                                    <td>{value.title}</td>
+                                                    <td>{value.todo}</td>
                                                     <td>{value.completed}</td>
                                                 </tr>
                                             }
